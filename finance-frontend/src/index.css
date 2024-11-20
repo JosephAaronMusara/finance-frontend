@@ -1,0 +1,87 @@
+/* Overall Background */
+body {
+  background-color: #9fbfd1 !important;
+  font-family: Arial, sans-serif;
+  color: #333;
+}
+
+.navbar-dark.bg-dark {
+  background-color: #087ABC !important;
+}
+
+.navbar-dark.bg-dark .navbar-nav .nav-link {
+  font-size: 1.8rem !important; 
+  font-weight: bold; 
+  color: #ffffff !important; 
+}
+
+.navbar-dark.bg-dark .navbar-nav .nav-link:hover {
+  color: #f0f0f0 !important; 
+}
+
+.navbar-dark.bg-dark .navbar-brand {
+  font-size: 2rem !important;
+  font-weight: bold;
+  color: white !important; 
+}
+
+.modal-content {
+  border: 2px solid #087ABC;
+}
+
+.modal-header {
+  background-color: #087ABC;
+  color: white;
+}
+
+.modal-footer .btn-primary {
+  background-color: #087ABC;
+  border: none;
+}
+
+.modal-footer .btn-secondary {
+  background-color: #6c757d;
+}
+
+.custom-table {
+  background-color: #ffffff; 
+  color: #333; 
+}
+
+.custom-table th, .custom-table td {
+  border: 1px solid #087ABC; 
+}
+
+.custom-table tfoot {
+  background-color: #087ABC; 
+  color: #ffffff;
+}
+
+.btn-warning {
+  background-color: #087ABC;
+  border: none;
+  color: white;
+}
+
+.btn-warning:hover {
+  background-color: #065b8c;
+}
+
+.btn-danger {
+  background-color: #d9534f;
+  border: none;
+  color: white;
+}
+
+.btn-danger:hover {
+  background-color: #c9302c;
+}
+
+th {
+  background-color: #087ABC; 
+  color: white; 
+}
+
+tbody tr:hover {
+  background-color: #f2f2f2; 
+}

@@ -1,0 +1,52 @@
+/* Style the summary header */
+.container .summary-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  background-color: #007bff;
+  color: #fff;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+/* Table header styling */
+.table thead {
+  background-color: #007bff;
+  color: white;
+}
+
+/* Table body styling */
+.table tbody tr {
+  text-align: center;
+}
+
+.table tfoot {
+  font-weight: bold;
+  background-color: #f8f9fa;
+}
+
+/* Navbar styling */
+.navbar {
+  margin-bottom: 20px;
+}
+
+.navbar-brand {
+  font-weight: bold;
+}
+
+.navbar-nav .nav-link {
+  color: white !important;
+}
+
+.navbar-nav .nav-link:hover {
+  text-decoration: underline;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .summary-header {
+    flex-direction: column;
+    text-align: center;
+  }
+}
