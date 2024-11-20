@@ -321,7 +321,7 @@ const BankBalances = () => {
         <Form.Label>Currency</Form.Label>
         <Form.Control
           as="select"
-          name="category"
+          name="currency"
           value={formData.category || ''}
           onChange={handleInputChange}
         >
