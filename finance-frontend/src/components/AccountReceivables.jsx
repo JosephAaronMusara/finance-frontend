@@ -100,6 +100,11 @@ const AccountReceivable = () => {
     0
   );
 
+  const balanceaccountReceivables = accountreceivables.reduce(
+    (total, item) => total + parseFloat(item.balance || 0),
+    0
+  );
+
   const filteredData = accountreceivables.filter(row =>
     row.customer_name.toLowerCase().includes(searchTerm.toLowerCase())
   );
@@ -168,10 +173,19 @@ const AccountReceivable = () => {
                 <td>{row.due_date}</td>
                 <td>{row.balance}</td>
                 <td>{row.service_type}</td>
-                <td>{((row.balance / totalaccountReceivables) * 100).toFixed(2)}%</td>
-              </tr>
+                <td>{Math.round((row.balance / totalaccountReceivables) * 100)}%</td>
+                </tr>
             ))}
           </tbody>
+          <tfoot>
+            <tr>
+              <td colSpan="3"><strong></strong></td>
+              <td>{totalaccountReceivables}</td>
+              <td colSpan="1"><strong></strong></td>
+              <td>{balanceaccountReceivables}</td>
+            </tr>
+            
+          </tfoot>
         </Table>
 
         <Pagination className="justify-content-center">
