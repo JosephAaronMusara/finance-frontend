@@ -6,36 +6,36 @@ body {
 }
 
 .navbar-dark.bg-dark {
-  background-color: #087ABC !important;
+  background-color: #087abc !important;
 }
 
 .navbar-dark.bg-dark .navbar-nav .nav-link {
-  font-size: 1.8rem !important; 
-  font-weight: bold; 
-  color: #ffffff !important; 
+  font-size: 1.8rem !important;
+  font-weight: bold;
+  color: #ffffff !important;
 }
 
 .navbar-dark.bg-dark .navbar-nav .nav-link:hover {
-  color: #f0f0f0 !important; 
+  color: #f0f0f0 !important;
 }
 
 .navbar-dark.bg-dark .navbar-brand {
   font-size: 2rem !important;
   font-weight: bold;
-  color: white !important; 
+  color: white !important;
 }
 
 .modal-content {
-  border: 2px solid #087ABC;
+  border: 2px solid #087abc;
 }
 
 .modal-header {
-  background-color: #087ABC;
+  background-color: #087abc;
   color: white;
 }
 
 .modal-footer .btn-primary {
-  background-color: #087ABC;
+  background-color: #087abc;
   border: none;
 }
 
@@ -44,21 +44,22 @@ body {
 }
 
 .custom-table {
-  background-color: #ffffff; 
-  color: #333; 
+  background-color: #ffffff;
+  color: #333;
 }
 
-.custom-table th, .custom-table td {
-  border: 1px solid #087ABC; 
+.custom-table th,
+.custom-table td {
+  border: 1px solid #087abc;
 }
 
 .custom-table tfoot {
-  background-color: #087ABC; 
+  background-color: #087abc;
   color: #ffffff;
 }
 
 .btn-warning {
-  background-color: #087ABC;
+  background-color: #087abc;
   border: none;
   color: white;
 }
@@ -78,10 +79,10 @@ body {
 }
 
 th {
-  background-color: #087ABC; 
-  color: white; 
+  background-color: #087abc;
+  color: white;
 }
 
 tbody tr:hover {
-  background-color: #f2f2f2; 
+  background-color: #f2f2f2;
 }

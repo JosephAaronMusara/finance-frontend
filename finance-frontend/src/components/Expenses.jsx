@@ -1,9 +1,17 @@
-import React, { useEffect, useState, useCallback } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useState, useCallback } from "react";
+import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchExpenses, fetchBankBalances } from "../features/dataSlice";
-import axios from '../api';
-import { Table, Button, Modal, Navbar, Nav, Pagination, Form } from 'react-bootstrap';
+import axios from "../api";
+import {
+  Table,
+  Button,
+  Modal,
+  Navbar,
+  Nav,
+  Pagination,
+  Form,
+} from "react-bootstrap";
 
 const Expenses = () => {
   const [data, setData] = useState([]);
@@ -11,7 +19,7 @@ const Expenses = () => {
   const [showCreateModal, setShowCreateModal] = useState(false);
   const [showDetailsModal, setShowDetailsModal] = useState(false); // Read-only modal state
   const [formData, setFormData] = useState({});
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(5);
 
@@ -55,7 +63,7 @@ const Expenses = () => {
 
   const handleCreate = async () => {
     try {
-      await axios.post('/expense/', formData);
+      await axios.post("/expense/", formData);
       setShowCreateModal(false);
       handleFetchProjects();
     } catch (error) {
@@ -84,10 +92,10 @@ const Expenses = () => {
     }
   };
 
-  const filteredData = expenses.filter(row =>
+  const filteredData = expenses.filter((row) =>
     row.description.toLowerCase().includes(searchTerm.toLowerCase())
   );
-
+u
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = filteredData.slice(indexOfFirstItem, indexOfLastItem);
@@ -101,11 +109,21 @@ const Expenses = () => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="/" className="nav-link"><i className="bi bi-house-fill me-2"></i> Home</Nav.Link>
-            <Nav.Link className="nav-link" onClick={handleShowCreate}><i className="bi bi-plus"></i> Create</Nav.Link>
-            <Nav.Link onClick={() => navigate('/bankbalance')}><i className="bi bi-bank me-2"></i> Bank Balances</Nav.Link>
-            <Nav.Link onClick={() => navigate('/account-receivables')}><i className="bi bi-graph-up-arrow"></i>Account Receivables</Nav.Link>
-            <Nav.Link className="nav-link" onClick={() => navigate('/rates')}><i className="bi bi-pencil-square"></i> Rates</Nav.Link>
+            <Nav.Link href="/" className="nav-link">
+              <i className="bi bi-house-fill me-2"></i> Home
+            </Nav.Link>
+            <Nav.Link className="nav-link" onClick={handleShowCreate}>
+              <i className="bi bi-plus"></i> Create
+            </Nav.Link>
+            <Nav.Link onClick={() => navigate("/bankbalance")}>
+              <i className="bi bi-bank me-2"></i> Bank Balances
+            </Nav.Link>
+            <Nav.Link onClick={() => navigate("/account-receivables")}>
+              <i className="bi bi-graph-up-arrow"></i>Account Receivables
+            </Nav.Link>
+            <Nav.Link className="nav-link" onClick={() => navigate("/rates")}>
+              <i className="bi bi-pencil-square"></i> Rates
+            </Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Navbar>
@@ -169,13 +187,35 @@ const Expenses = () => {
             <Modal.Title>Expense Details</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <p><strong>Description:</strong> {formData.description}</p>
-            <p><strong>Amount:</strong> {formData.amount}</p>
+            <p>
+              <strong>Description:</strong> {formData.description}
+            </p>
+            <p>
+              <strong>Amount:</strong> {formData.amount}
+            </p>
           </Modal.Body>
           <Modal.Footer>
-            <Button variant="warning" onClick={() => { handleCloseDetails(); handleShowEdit(formData); }}>Edit</Button>
-            <Button variant="danger" onClick={() => { handleCloseDetails(); handleDelete(formData.id); }}>Delete</Button>
-            <Button variant="secondary" onClick={handleCloseDetails}>Close</Button>
+            <Button
+              variant="warning"
+              onClick={() => {
+                handleCloseDetails();
+                handleShowEdit(formData);
+              }}
+            >
+              Edit
+            </Button>
+            <Button
+              variant="danger"
+              onClick={() => {
+                handleCloseDetails();
+                handleDelete(formData.id);
+              }}
+            >
+              Delete
+            </Button>
+            <Button variant="secondary" onClick={handleCloseDetails}>
+              Close
+            </Button>
           </Modal.Footer>
         </Modal>
 
@@ -191,7 +231,7 @@ const Expenses = () => {
                 <Form.Control
                   type="text"
                   name="description"
-                  value={formData.description || ''}
+                  value={formData.description || ""}
                   onChange={handleInputChange}
                 />
               </Form.Group>
@@ -200,15 +240,19 @@ const Expenses = () => {
                 <Form.Control
                   type="text"
                   name="amount"
-                  value={formData.amount || ''}
+                  value={formData.amount || ""}
                   onChange={handleInputChange}
                 />
               </Form.Group>
             </Form>
           </Modal.Body>
           <Modal.Footer>
-            <Button variant="secondary" onClick={handleCloseEdit}>Close</Button>
-            <Button variant="primary" onClick={handleUpdate}>Save Changes</Button>
+            <Button variant="secondary" onClick={handleCloseEdit}>
+              Close
+            </Button>
+            <Button variant="primary" onClick={handleUpdate}>
+              Save Changes
+            </Button>
           </Modal.Footer>
         </Modal>
 
@@ -224,7 +268,7 @@ const Expenses = () => {
                 <Form.Control
                   type="text"
                   name="description"
-                  value={formData.description || ''}
+                  value={formData.description || ""}
                   onChange={handleInputChange}
                 />
               </Form.Group>
@@ -233,15 +277,19 @@ const Expenses = () => {
                 <Form.Control
                   type="text"
                   name="amount"
-                  value={formData.amount || ''}
+                  value={formData.amount || ""}
                   onChange={handleInputChange}
                 />
               </Form.Group>
             </Form>
           </Modal.Body>
           <Modal.Footer>
-            <Button variant="secondary" onClick={handleCloseCreate}>Close</Button>
-            <Button variant="primary" onClick={handleCreate}>Add Expense</Button>
+            <Button variant="secondary" onClick={handleCloseCreate}>
+              Close
+            </Button>
+            <Button variant="primary" onClick={handleCreate}>
+              Add Expense
+            </Button>
           </Modal.Footer>
         </Modal>
       </div>
