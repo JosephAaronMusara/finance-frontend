@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
-import { fetchExpenses, fetchBankBalances } from "../features/dataSlice";
+import { fetchExpenses, fetchBankBalances, fetchRates } from "../features/dataSlice";
 import axios from '../api';
 import "./BankBalances.css";
 import { Table, Button, Modal, Navbar, Nav, Form } from 'react-bootstrap';
@@ -38,6 +38,12 @@ const BankBalances = () => {
     setShowDetailsModal(true);
   };
 
+  const [selectedOption, setSelectedOption] = useState('');
+
+  const handleChange = (event) => {
+    setSelectedOption(event.target.value);
+  };
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
@@ -59,6 +65,7 @@ const BankBalances = () => {
       setShowCreateModal(false);
       window.location.reload();
     } catch (error) {
+      console.log(formData)
       console.error("Error creating data:", error);
     }
   };
@@ -68,6 +75,7 @@ const BankBalances = () => {
   const handleFetchProjects = useCallback(() => {
     dispatch(fetchExpenses());
     dispatch(fetchBankBalances());
+    dispatch(fetchRates())
   }, [dispatch]);
 
   useEffect(() => {
@@ -75,6 +83,7 @@ const BankBalances = () => {
   }, [handleFetchProjects]);
 
   const bankBalances = useSelector((state) => state.data.bankBalances);
+  const rates = useSelector((state) => state.data.rates);
   const unutilizedGrant = bankBalances.filter((grants) => grants.type === 'Unutilized Grant');
   const currentAssets = bankBalances.filter((assets) => assets.type === 'Current Asset');
   const netCurrentAssets = bankBalances.filter((assets) => assets.type === 'NET CURRENT ASSET');
@@ -308,7 +317,24 @@ const BankBalances = () => {
         />
       </Form.Group>
 
-      <Form.Group controlId="formBasicRwf">
+      <Form.Group controlId="formBasicType">
+        <Form.Label>Currency</Form.Label>
+        <Form.Control
+          as="select"
+          name="category"
+          value={formData.category || ''}
+          onChange={handleInputChange}
+        >
+          <option value="">Select Currency</option>
+          {rates.map((option) => (
+            <option key={option.id} value={option.id}>
+              {option.name}
+            </option>
+          ))}
+        </Form.Control>
+      </Form.Group>
+
+      {/* <Form.Group controlId="formBasicRwf">
         <Form.Label>RWF Equivalent</Form.Label>
         <Form.Control
           type="number"
@@ -317,7 +343,7 @@ const BankBalances = () => {
           value={formData.rwf_equivalent || ''}
           onChange={handleInputChange}
         />
-      </Form.Group>
+      </Form.Group> */}
 
       <Form.Group controlId="formBasicType">
         <Form.Label>Category</Form.Label>
