@@ -135,6 +135,7 @@ const BankBalances = () => {
             <Nav.Link className="nav-link" onClick={handleShowCreate}><i className="bi bi-plus"></i> Create</Nav.Link>
             <Nav.Link onClick={() => navigate('/expense')} className="nav-link"><i className="bi bi-cash-coin"></i> Expenses</Nav.Link>
             <Nav.Link onClick={() => navigate('/account-receivables')} className="nav-link"><i className="bi-graph-up-arrow"></i> Account Receivables</Nav.Link>
+            <Nav.Link className="nav-link" onClick={() => navigate('/rates')}><i className="bi bi-pencil-square"></i> Rates</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Navbar>
@@ -278,77 +279,72 @@ const BankBalances = () => {
           </Button>
         </Modal.Footer>
       </Modal>
+{/* Create Modal */}
+<Modal show={showCreateModal} onHide={handleCloseCreate}>
+  <Modal.Header closeButton>
+    <Modal.Title>Create Bank Balance</Modal.Title>
+  </Modal.Header>
+  <Modal.Body>
+    <Form>
+      <Form.Group controlId="formBasicName">
+        <Form.Label>Name</Form.Label>
+        <Form.Control
+          type="text"
+          placeholder="Enter name"
+          name="name"
+          value={formData.name || ''}
+          onChange={handleInputChange}
+        />
+      </Form.Group>
 
-      {/* Create Modal */}
-      <Modal show={showCreateModal} onHide={handleCloseCreate}>
-        <Modal.Header closeButton>
-          <Modal.Title>Create Bank Balance</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <Form>
-            <Form.Group controlId="formBasicName">
-              <Form.Label>Name</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Enter name"
-                name="name"
-                value={formData.name || ''}
-                onChange={handleInputChange}
-              />
-            </Form.Group>
+      <Form.Group controlId="formBasicAmount">
+        <Form.Label>Amount</Form.Label>
+        <Form.Control
+          type="number"
+          placeholder="Amount"
+          name="amount"
+          value={formData.amount || ''}
+          onChange={handleInputChange}
+        />
+      </Form.Group>
 
-            <Form.Group controlId="formBasicAmount">
-              <Form.Label>Amount</Form.Label>
-              <Form.Control
-                type="number"
-                placeholder="Amount"
-                name="amount"
-                value={formData.amount || ''}
-                onChange={handleInputChange}
-              />
-            </Form.Group>
+      <Form.Group controlId="formBasicRwf">
+        <Form.Label>RWF Equivalent</Form.Label>
+        <Form.Control
+          type="number"
+          placeholder="RWF Equivalent"
+          name="rwf_equivalent"
+          value={formData.rwf_equivalent || ''}
+          onChange={handleInputChange}
+        />
+      </Form.Group>
 
-            <Form.Group controlId="formBasicRwf">
-              <Form.Label>RWF Equivalent</Form.Label>
-              <Form.Control
-                type="number"
-                placeholder="RWF Equivalent"
-                name="rwf_equivalent"
-                value={formData.rwf_equivalent || ''}
-                onChange={handleInputChange}
-              />
-            </Form.Group>
-          </Form>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleCloseCreate}>
-            Close
-          </Button>
-          <Button variant="primary" onClick={handleCreate}>
-            Create Bank Balance
-          </Button>
-        </Modal.Footer>
-      </Modal>
+      <Form.Group controlId="formBasicType">
+        <Form.Label>Category</Form.Label>
+        <Form.Control
+          as="select"
+          name="category"
+          value={formData.category || ''}
+          onChange={handleInputChange}
+        >
+          <option value="">Select Category</option>
+          <option value="Current Asset">Current Asset</option>
+          <option value="Unutilized Grant">Unutilized Grant</option>
+          <option value="NET CURRENT ASSET">Net Current Asset</option>
+        </Form.Control>
+      </Form.Group>
+    </Form>
+  </Modal.Body>
+  <Modal.Footer>
+    <Button variant="secondary" onClick={handleCloseCreate}>
+      Close
+    </Button>
+    <Button variant="primary" onClick={handleCreate}>
+      Create Bank Balance
+    </Button>
+  </Modal.Footer>
+</Modal>
 
-      {/* Details Modal */}
-      <Modal show={showDetailsModal} onHide={handleCloseDetails}>
-        <Modal.Header closeButton>
-          <Modal.Title>Bank Balance Details</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <strong>Name:</strong> {currentRow ? currentRow.name : 'Loading...'}<br />
-          <strong>Amount:</strong> {currentRow ? currentRow.amount : 'Loading...'}<br />
-          <strong>RWF Equivalent:</strong> {currentRow ? currentRow.rwf_equivalent : 'Loading...'}<br />
-          <strong>Amount in RWF:</strong> {currentRow ? (currentRow.amount * currentRow.rwf_equivalent).toFixed(2) : 'Loading...'}
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleCloseDetails}>
-            Close
-          </Button>
-          <Button variant="primary" onClick={() => handleShowEdit(currentRow)}>Edit</Button>{' '}
-          <Button variant="danger" onClick={() => handleDelete(currentRow.id)}>Delete</Button>
-        </Modal.Footer>
-      </Modal>
     </div>
   );
 };

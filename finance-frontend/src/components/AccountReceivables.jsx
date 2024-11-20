@@ -128,6 +128,7 @@ const AccountReceivable = () => {
             <Nav.Link className="nav-link" onClick={handleShowCreate}><i className="bi bi-plus"></i> Create</Nav.Link>
             <Nav.Link className="nav-link" onClick={() => navigate('/bankbalance')}><i className="bi bi-bank me-2"></i> Bank Balances</Nav.Link>
             <Nav.Link className="nav-link" onClick={() => navigate('/expense')}><i className="bi bi-cash-coin"></i> Expenses</Nav.Link>
+            <Nav.Link className="nav-link" onClick={() => navigate('/rates')}><i className="bi bi-pencil-square"></i> Rates</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Navbar>
@@ -219,161 +220,170 @@ const AccountReceivable = () => {
         </Modal.Footer>
       </Modal>
 
-      {/* Create Modal */}
-      <Modal show={showCreateModal} onHide={handleCloseCreate}>
-        <Modal.Header closeButton>
-          <Modal.Title>Create New Entry</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <Form>
-            <Form.Group controlId="invoiceDate">
-              <Form.Label>Invoice Date</Form.Label>
-              <Form.Control
-                type="date"
-                name="invoice_date"
-                value={formData.invoice_date || ''}
-                onChange={handleInputChange}
-              />
-            </Form.Group>
-            <Form.Group controlId="invoiceNumber">
-              <Form.Label>Invoice Number</Form.Label>
-              <Form.Control
-                type="text"
-                name="invoice_number"
-                value={formData.invoice_number || ''}
-                onChange={handleInputChange}
-              />
-            </Form.Group>
-            <Form.Group controlId="customerName">
-              <Form.Label>Customer Name</Form.Label>
-              <Form.Control
-                type="text"
-                name="customer_name"
-                value={formData.customer_name || ''}
-                onChange={handleInputChange}
-              />
-            </Form.Group>
-            <Form.Group controlId="totalAmount">
-              <Form.Label>Total Amount</Form.Label>
-              <Form.Control
-                type="number"
-                name="total_amount"
-                value={formData.total_amount || ''}
-                onChange={handleInputChange}
-              />
-            </Form.Group>
-            <Form.Group controlId="dueDate">
-              <Form.Label>Due Date</Form.Label>
-              <Form.Control
-                type="date"
-                name="due_date"
-                value={formData.due_date || ''}
-                onChange={handleInputChange}
-              />
-            </Form.Group>
-            <Form.Group controlId="balance">
-              <Form.Label>Balance</Form.Label>
-              <Form.Control
-                type="number"
-                name="balance"
-                value={formData.balance || ''}
-                onChange={handleInputChange}
-              />
-            </Form.Group>
-            <Form.Group controlId="serviceType">
-              <Form.Label>Service Type</Form.Label>
-              <Form.Control
-                type="text"
-                name="service_type"
-                value={formData.service_type || ''}
-                onChange={handleInputChange}
-              />
-            </Form.Group>
-          </Form>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleCloseCreate}>Close</Button>
-          <Button variant="primary" onClick={handleCreate}>Create</Button>
-        </Modal.Footer>
-      </Modal>
+{/* Create Modal */}
+<Modal show={showCreateModal} onHide={handleCloseCreate}>
+  <Modal.Header closeButton>
+    <Modal.Title>Create New Entry</Modal.Title>
+  </Modal.Header>
+  <Modal.Body>
+    <Form>
+      <Form.Group controlId="invoiceDate">
+        <Form.Label>Invoice Date</Form.Label>
+        <Form.Control
+          type="date"
+          name="invoice_date"
+          value={formData.invoice_date || ''}
+          onChange={handleInputChange}
+        />
+      </Form.Group>
+      <Form.Group controlId="invoiceNumber">
+        <Form.Label>Invoice Number</Form.Label>
+        <Form.Control
+          type="text"
+          name="invoice_number"
+          value={formData.invoice_number || ''}
+          onChange={handleInputChange}
+        />
+      </Form.Group>
+      <Form.Group controlId="customerName">
+        <Form.Label>Customer Name</Form.Label>
+        <Form.Control
+          type="text"
+          name="customer_name"
+          value={formData.customer_name || ''}
+          onChange={handleInputChange}
+        />
+      </Form.Group>
+      <Form.Group controlId="totalAmount">
+        <Form.Label>Total Amount</Form.Label>
+        <Form.Control
+          type="number"
+          name="total_amount"
+          value={formData.total_amount || ''}
+          onChange={handleInputChange}
+        />
+      </Form.Group>
+      <Form.Group controlId="dueDate">
+        <Form.Label>Due Date</Form.Label>
+        <Form.Control
+          type="date"
+          name="due_date"
+          value={formData.due_date || ''}
+          onChange={handleInputChange}
+        />
+      </Form.Group>
+      <Form.Group controlId="balance">
+        <Form.Label>Balance</Form.Label>
+        <Form.Control
+          type="number"
+          name="balance"
+          value={formData.balance || ''}
+          onChange={handleInputChange}
+        />
+      </Form.Group>
+      <Form.Group controlId="serviceType">
+        <Form.Label>Service Type</Form.Label>
+        <Form.Control
+          as="select"
+          name="service_type"
+          value={formData.service_type || ''}
+          onChange={handleInputChange}
+        >
+          <option value="">Select Service Type</option>
+          <option value="EXPORT OF SERVICES">EXPORT OF SERVICES</option>
+          <option value="LOCAL SERVICE">LOCAL SERVICE</option>
+        </Form.Control>
+      </Form.Group>
+    </Form>
+  </Modal.Body>
+  <Modal.Footer>
+    <Button variant="secondary" onClick={handleCloseCreate}>Close</Button>
+    <Button variant="primary" onClick={handleCreate}>Create</Button>
+  </Modal.Footer>
+</Modal>
 
-      {/* Edit Modal */}
-      <Modal show={showEditModal} onHide={handleCloseEdit}>
-        <Modal.Header closeButton>
-          <Modal.Title>Edit Entry</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <Form>
-            <Form.Group controlId="invoiceDate">
-              <Form.Label>Invoice Date</Form.Label>
-              <Form.Control
-                type="date"
-                name="invoice_date"
-                value={formData.invoice_date || ''}
-                onChange={handleInputChange}
-              />
-            </Form.Group>
-            <Form.Group controlId="invoiceNumber">
-              <Form.Label>Invoice Number</Form.Label>
-              <Form.Control
-                type="text"
-                name="invoice_number"
-                value={formData.invoice_number || ''}
-                onChange={handleInputChange}
-              />
-            </Form.Group>
-            <Form.Group controlId="customerName">
-              <Form.Label>Customer Name</Form.Label>
-              <Form.Control
-                type="text"
-                name="customer_name"
-                value={formData.customer_name || ''}
-                onChange={handleInputChange}
-              />
-            </Form.Group>
-            <Form.Group controlId="totalAmount">
-              <Form.Label>Total Amount</Form.Label>
-              <Form.Control
-                type="number"
-                name="total_amount"
-                value={formData.total_amount || ''}
-                onChange={handleInputChange}
-              />
-            </Form.Group>
-            <Form.Group controlId="dueDate">
-              <Form.Label>Due Date</Form.Label>
-              <Form.Control
-                type="date"
-                name="due_date"
-                value={formData.due_date || ''}
-                onChange={handleInputChange}
-              />
-            </Form.Group>
-            <Form.Group controlId="balance">
-              <Form.Label>Balance</Form.Label>
-              <Form.Control
-                type="number"
-                name="balance"
-                value={formData.balance || ''}
-                onChange={handleInputChange}
-              />
-            </Form.Group>
-            <Form.Group controlId="serviceType">
-              <Form.Label>Service Type</Form.Label>
-              <Form.Control
-                type="text"
-                name="service_type"
-                value={formData.service_type || ''}
-                onChange={handleInputChange}
-              />
-            </Form.Group>
-          </Form>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleCloseEdit}>Close</Button>
-          <Button variant="primary" onClick={handleUpdate}>Update</Button>
-        </Modal.Footer>
-      </Modal>
+
+     {/* Edit Modal */}
+<Modal show={showEditModal} onHide={handleCloseEdit}>
+  <Modal.Header closeButton>
+    <Modal.Title>Edit Entry</Modal.Title>
+  </Modal.Header>
+  <Modal.Body>
+    <Form>
+      <Form.Group controlId="invoiceDate">
+        <Form.Label>Invoice Date</Form.Label>
+        <Form.Control
+          type="date"
+          name="invoice_date"
+          value={formData.invoice_date || ''}
+          onChange={handleInputChange}
+        />
+      </Form.Group>
+      <Form.Group controlId="invoiceNumber">
+        <Form.Label>Invoice Number</Form.Label>
+        <Form.Control
+          type="text"
+          name="invoice_number"
+          value={formData.invoice_number || ''}
+          onChange={handleInputChange}
+        />
+      </Form.Group>
+      <Form.Group controlId="customerName">
+        <Form.Label>Customer Name</Form.Label>
+        <Form.Control
+          type="text"
+          name="customer_name"
+          value={formData.customer_name || ''}
+          onChange={handleInputChange}
+        />
+      </Form.Group>
+      <Form.Group controlId="totalAmount">
+        <Form.Label>Total Amount</Form.Label>
+        <Form.Control
+          type="number"
+          name="total_amount"
+          value={formData.total_amount || ''}
+          onChange={handleInputChange}
+        />
+      </Form.Group>
+      <Form.Group controlId="dueDate">
+        <Form.Label>Due Date</Form.Label>
+        <Form.Control
+          type="date"
+          name="due_date"
+          value={formData.due_date || ''}
+          onChange={handleInputChange}
+        />
+      </Form.Group>
+      <Form.Group controlId="balance">
+        <Form.Label>Balance</Form.Label>
+        <Form.Control
+          type="number"
+          name="balance"
+          value={formData.balance || ''}
+          onChange={handleInputChange}
+        />
+      </Form.Group>
+      <Form.Group controlId="serviceType">
+        <Form.Label>Service Type</Form.Label>
+        <Form.Control
+          as="select"
+          name="service_type"
+          value={formData.service_type || ''}
+          onChange={handleInputChange}
+        >
+          <option value="EXPORT OF SERVICES">EXPORT OF SERVICES</option>
+          <option value="LOCAL SERVICE">LOCAL SERVICE</option>
+        </Form.Control>
+      </Form.Group>
+    </Form>
+  </Modal.Body>
+  <Modal.Footer>
+    <Button variant="secondary" onClick={handleCloseEdit}>Close</Button>
+    <Button variant="primary" onClick={handleUpdate}>Update</Button>
+  </Modal.Footer>
+</Modal>
+
     </div>
   );
 };

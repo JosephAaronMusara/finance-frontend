@@ -105,6 +105,7 @@ const Expenses = () => {
             <Nav.Link className="nav-link" onClick={handleShowCreate}><i className="bi bi-plus"></i> Create</Nav.Link>
             <Nav.Link onClick={() => navigate('/bankbalance')}><i className="bi bi-bank me-2"></i> Bank Balances</Nav.Link>
             <Nav.Link onClick={() => navigate('/account-receivables')}><i className="bi bi-graph-up-arrow"></i>Account Receivables</Nav.Link>
+            <Nav.Link className="nav-link" onClick={() => navigate('/rates')}><i className="bi bi-pencil-square"></i> Rates</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Navbar>

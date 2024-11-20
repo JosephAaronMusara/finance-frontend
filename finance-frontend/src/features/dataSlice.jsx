@@ -33,7 +33,7 @@ export const fetchAccountReceivable = () => async (dispatch) => {
   try {
     
     const response = await axios.get(
-      "http://127.0.0.1:8000/api/accountreceivable/"
+      "https://databankvanguard-b3d326c04ab4.herokuapp.com/finance/accountreceivable/"
     );
 
     dispatch(setAccountReceivable(response.data));
@@ -47,7 +47,7 @@ export const fetchBankBalances = () => async (dispatch) => {
   try {
     
     const response = await axios.get(
-      "http://127.0.0.1:8000/api/bankbalance/"
+      "https://databankvanguard-b3d326c04ab4.herokuapp.com/finance/bankbalance/"
     );
 
     dispatch(setBankBalances(response.data));
@@ -63,7 +63,7 @@ export const fetchExpenses = () => async (dispatch) => {
   try {
     
     const response = await axios.get(
-      "http://127.0.0.1:8000/api/expense/"
+      "https://databankvanguard-b3d326c04ab4.herokuapp.com/finance/expense/"
     );
    
     dispatch(setExpenses(response.data));
@@ -79,9 +79,8 @@ export const fetchRates = () => async (dispatch) => {
   try {
     
     const response = await axios.get(
-      "http://127.0.0.1:8000/api/currency/"
+      "https://databankvanguard-b3d326c04ab4.herokuapp.com/finance/currency/"
     );
-    console.log(response,"reate____")
 
     dispatch(setRates(response.data));
 
