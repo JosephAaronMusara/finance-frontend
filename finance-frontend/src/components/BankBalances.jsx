@@ -61,14 +61,26 @@ const BankBalances = () => {
 
   const handleCreate = async () => {
     try {
-      await axios.post(`bankbalance/`, formData);
+      const payload = {
+        name: formData.name,               // Name
+        type: formData.category,           // Category maps to 'type'
+        currency: formData.currency,       // Currency (ensure this is the correct value from the form)
+        amount: formData.amount,           // Amount
+      };
+  
+      // Optionally, if `rwf_equivalent` is needed and can be calculated or filled in, include it here
+      // payload.rwf_equivalent = formData.rwf_equivalent;
+  
+      // Send the POST request
+      await axios.post(`bankbalance/`, payload);
+  
       setShowCreateModal(false);
-      window.location.reload();
+      window.location.reload();  // Reload page to reflect changes
     } catch (error) {
-      console.log(formData)
       console.error("Error creating data:", error);
     }
   };
+  
 
   const dispatch = useDispatch();
 
@@ -318,32 +330,22 @@ const BankBalances = () => {
       </Form.Group>
 
       <Form.Group controlId="formBasicType">
-        <Form.Label>Currency</Form.Label>
-        <Form.Control
-          as="select"
-          name="currency"
-          value={formData.category || ''}
-          onChange={handleInputChange}
-        >
-          <option value="">Select Currency</option>
-          {rates.map((option) => (
-            <option key={option.id} value={option.id}>
-              {option.name}
-            </option>
-          ))}
-        </Form.Control>
-      </Form.Group>
+  <Form.Label>Currency</Form.Label>
+  <Form.Control
+    as="select"
+    name="currency"
+    value={formData.currency || ''}
+    onChange={handleInputChange}
+  >
+    <option value="">Select Currency</option>
+    {rates.map((option) => (
+      <option key={option.id} value={option.id}>
+        {option.name}
+      </option>
+    ))}
+  </Form.Control>
+</Form.Group>
 
-      {/* <Form.Group controlId="formBasicRwf">
-        <Form.Label>RWF Equivalent</Form.Label>
-        <Form.Control
-          type="number"
-          placeholder="RWF Equivalent"
-          name="rwf_equivalent"
-          value={formData.rwf_equivalent || ''}
-          onChange={handleInputChange}
-        />
-      </Form.Group> */}
 
       <Form.Group controlId="formBasicType">
         <Form.Label>Category</Form.Label>
