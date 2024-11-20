@@ -61,21 +61,9 @@ const BankBalances = () => {
 
   const handleCreate = async () => {
     try {
-      const payload = {
-        name: formData.name,               // Name
-        type: formData.category,           // Category maps to 'type'
-        currency: formData.currency,       // Currency (ensure this is the correct value from the form)
-        amount: formData.amount,           // Amount
-      };
-  
-      // Optionally, if `rwf_equivalent` is needed and can be calculated or filled in, include it here
-      // payload.rwf_equivalent = formData.rwf_equivalent;
-  
-      // Send the POST request
-      await axios.post(`bankbalance/`, payload);
-  
+      await axios.post(`bankbalance/`, formData);
       setShowCreateModal(false);
-      window.location.reload();  // Reload page to reflect changes
+      window.location.reload(); 
     } catch (error) {
       console.error("Error creating data:", error);
     }
@@ -351,7 +339,7 @@ const BankBalances = () => {
         <Form.Label>Category</Form.Label>
         <Form.Control
           as="select"
-          name="category"
+          name="type"
           value={formData.category || ''}
           onChange={handleInputChange}
         >
